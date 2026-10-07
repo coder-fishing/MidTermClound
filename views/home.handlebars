@@ -1,0 +1,88 @@
+<section class="container">
+
+  <div class="card">
+    <h2>Thêm sách</h2>
+
+    {{#if error}}
+      <p class="error">{{error}}</p>
+    {{/if}}
+
+    <form action="/books/add" method="POST">
+
+      <label>Mã sách</label>
+      <input
+        type="text"
+        name="code"
+        placeholder="Ví dụ: 231-B001"
+        required
+      >
+
+      <label>Tên sách</label>
+      <input
+        type="text"
+        name="name"
+        placeholder="Nhập tên sách"
+        required
+      >
+
+      <label>Giá</label>
+      <input
+        type="number"
+        name="price"
+        placeholder="Nhập giá"
+        min="0"
+        required
+      >
+
+      <button type="submit">
+        Thêm sách
+      </button>
+
+    </form>
+  </div>
+
+
+  <div class="card">
+    <h2>Danh sách sách</h2>
+
+    <table>
+
+      <thead>
+        <tr>
+          <th>Mã sách</th>
+          <th>Tên sách</th>
+          <th>Giá</th>
+          <th>VAT</th>
+          <th>Giá sau thuế</th>
+        </tr>
+      </thead>
+
+      <tbody>
+
+        {{#each books}}
+
+          <tr>
+            <td>{{this.code}}</td>
+            <td>{{this.name}}</td>
+            <td>{{this.price}}</td>
+            <td>{{this.vat}}%</td>
+            <td>{{this.priceAfterTax}}</td>
+          </tr>
+
+        {{else}}
+
+          <tr>
+            <td colspan="5">
+              Chưa có sách
+            </td>
+          </tr>
+
+        {{/each}}
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+</section>
